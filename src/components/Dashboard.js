@@ -1,33 +1,45 @@
 import { connect } from "react-redux";
+import QuestionList from "./QuestionList";
 
 const Dashboard = (props) => {
   return (
     <div>
-      <h3 className="center">New Questions</h3>
-      {props.newQuestions.author}
-      <ul className="dashboard-list">
-        {/*props.newQuestions.map((id) => (
-          <li key={id}>
-           ID: {id}
-          </li>
-        ))*/}
-      </ul>
-      <h3 className="center">Done</h3>
-      {props.doneQuestions}
+        <div className="section">
+            <h3 className="center">New Questions</h3>
+            <ul className="section-list">
+                {props.newQuestions.map((id) => (
+                    <li key={id}>
+                        <QuestionList id={id} />
+                    </li>
+                ))}
+            </ul>
+        </div>
+        <div className="section margin-top">
+            <h3 className="center">Done</h3>
+            <ul className="section-list">
+                {props.doneQuestions.map((id) => (
+                    <li key={id}>
+                        <QuestionList id={id} />
+                    </li>
+                ))}
+            </ul>
+        </div>
     </div>
   );
 };
 
 const mapStateToProps = ({ authedUser, questions }) => {
 
-  const newQuestions = Object.keys(questions)
-                             .map((key) => { 
-                                const object = questions[key];
-                                //Do stuff
-                             });
+  let newQuestions = []; 
+  let doneQuestions = []; 
 
-  const doneQuestions = "DONE CHAO";
-  console.log(questions);
+  for (const question in questions){
+    if (questions[question].optionOne.votes.includes(authedUser) || questions[question].optionTwo.votes.includes(authedUser)){
+        doneQuestions = [...doneQuestions, questions[question].id]
+    }else{
+        newQuestions = [...newQuestions, questions[question].id]
+    }
+  }
 
   return {
     newQuestions,
