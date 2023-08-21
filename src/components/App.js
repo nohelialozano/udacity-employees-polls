@@ -9,6 +9,7 @@ import LoadingBar from "react-redux-loading-bar";
 import AddQuestion from "./AddQuestion";
 import Leaderboard from "./Leaderboard";
 import NotFound from "./NotFound";
+import Login from "./Login";
 
 const App = (props) => {
   useEffect(() => {
@@ -19,15 +20,22 @@ const App = (props) => {
     <Fragment>
       <LoadingBar />
       <div className="container">
-        <Nav />
-          {props.loading == true? null : (
+          {props.loading == true ? 
             <Routes>
-              <Route path="/" exact element={<Dashboard />}/>
-              <Route path="/question/:id" element={<Question />}/>
-              <Route path="/add" element={<AddQuestion />}/>
-              <Route path="/leaderboard" element={<Leaderboard />}/>
-              <Route path="*" element={<NotFound />}/>
+              <Route path="/login" element={<Login />}/>
+              <Route path="*" element={<Login />}/>
             </Routes>
+            : (
+            <div>
+              <Nav />
+              <Routes>
+                <Route path="/" exact element={<Dashboard />}/>
+                <Route path="/question/:id" element={<Question />}/>
+                <Route path="/add" element={<AddQuestion />}/>
+                <Route path="/leaderboard" element={<Leaderboard />}/>
+                <Route path="*" element={<NotFound />}/>
+              </Routes>
+            </div>
           )}
       </div>
     </Fragment>

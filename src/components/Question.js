@@ -29,7 +29,7 @@ const Question = () => {
   };
 
   useEffect(() => {
-    if (question.optionOne.votes.includes(authedUser) == true || question.optionTwo.votes.includes(authedUser) == true){
+    if (question && (question.optionOne.votes.includes(authedUser) == true || question.optionTwo.votes.includes(authedUser) == true)){
       setDisabled(true);
     }else{
       setDisabled(false);
@@ -37,7 +37,6 @@ const Question = () => {
   }, []);
 
   if (question === undefined){
-    //console.log("Question doesn't exist...");
     return <NotFound />;
   }
 

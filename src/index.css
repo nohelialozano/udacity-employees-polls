@@ -282,3 +282,7 @@ button[disabled=disabled], button:disabled {
   padding-right: 12px;
   animation: type .5s alternate infinite;
 }
+
+.login-error {
+  color: red;
+}
