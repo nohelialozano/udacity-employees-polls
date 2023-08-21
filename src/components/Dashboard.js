@@ -9,7 +9,7 @@ const Dashboard = (props) => {
             <ul className="section-list">
                 {props.newQuestions.map((id) => (
                     <li key={id}>
-                        <QuestionList id={id} />
+                        <QuestionList id={id}/>
                     </li>
                 ))}
             </ul>
@@ -19,7 +19,7 @@ const Dashboard = (props) => {
             <ul className="section-list">
                 {props.doneQuestions.map((id) => (
                     <li key={id}>
-                        <QuestionList id={id} />
+                        <QuestionList id={id}/>
                     </li>
                 ))}
             </ul>

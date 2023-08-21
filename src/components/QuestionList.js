@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
 import { formatDate } from "../utils/helpers";
+import { Link } from "react-router-dom";
 
 const QuestionList = (props) => {
-
+  
   const {
     id,
     timestamp,
@@ -16,9 +17,11 @@ const QuestionList = (props) => {
         <div>
           <span>{author}</span>
           <div>{formatDate(timestamp)}</div>
+          <Link to={`/question/${id}`}>
             <button className="btn">
                 Show
             </button>
+          </Link>
         </div>
       </div>
   );
