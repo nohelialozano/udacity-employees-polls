@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 import { SetAuthedUser } from "../actions/authedUser";
-import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
 
     const { dispatch, users } = props;
-    const navigate = useNavigate();
 
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
@@ -34,7 +32,6 @@ const Login = (props) => {
         if (users[user] && users[user].password == password){
                 dispatch(SetAuthedUser(user));          
                 setErrorMessage("");
-                navigate("/");
             }else{
                 setErrorMessage("The user and password you entered did not match our records. Please check and try again.");
                 console.log("Error ", errorMessage);
@@ -46,12 +43,12 @@ const Login = (props) => {
         <div>
             <h3 className="center">Log In</h3>
             <form className="add-question center" onSubmit={handleSubmit}>
-                {errorMessage != "" && <div className="login-error">{errorMessage}</div>}
+                {errorMessage != "" && <div data-testid="error-message" className="login-error">{errorMessage}</div>}
                 <p>User</p>
-                <input placeholder="User" value={user} onChange={handleChangeUser} className="input"/>
+                <input data-testid="user-input" placeholder="User" value={user} onChange={handleChangeUser} className="input"/>
                 <p>Password</p>
-                <input type="password" placeholder="Password" value={password} onChange={handleChangePassword} className="input"/>
-                <button className="btn block" type="submit" disabled={user === "" || password === ""}>
+                <input data-testid="password-input" type="password" placeholder="Password" value={password} onChange={handleChangePassword} className="input"/>
+                <button data-testid="submit-button" className="btn block" type="submit" disabled={user === "" || password === ""}>
                     Submit
                 </button>
             </form>
