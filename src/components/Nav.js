@@ -1,5 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { SetAuthedUser } from "../actions/authedUser";
 
 const Nav = () => {
 
@@ -9,19 +11,30 @@ const Nav = () => {
 
     const splitLocation = pathname.split("/");
 
+    const authedUser = useSelector((state) => state.authedUser);
+
+    const dispatch = useDispatch();
+
+    const logout = (e) => {
+        e.preventDefault();
+        dispatch(SetAuthedUser(null));
+    }
+
     return (
-        <nav className="nav">
-            <ul>
-                <li className={splitLocation[1] === "" ? "active" : ""}>
+        <nav className="nav topnav">
+            <div className={splitLocation[1] === "" ? "active" : ""}>
                     <NavLink to="/">Home</NavLink>
-                </li>
-                <li className={splitLocation[1] === "leaderboard" ? "active" : ""}>
+                </div>
+                <div className={splitLocation[1] === "leaderboard" ? "active" : ""}>
                     <NavLink to="/leaderboard">Leaderboard</NavLink>
-                </li>
-                <li className={splitLocation[1] === "add" ? "active" : ""}>
+                </div>
+                <div className={splitLocation[1] === "add" ? "active" : ""}>
                     <NavLink to="/add">New</NavLink>
-                </li>
-            </ul>
+                </div>
+            <div className="topnav-right">
+                <a>{authedUser}</a>
+                <a href="#" onClick={(e) => logout(e)}>Logout</a>
+            </div>
         </nav>
     )
 }

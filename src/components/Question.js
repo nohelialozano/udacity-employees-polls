@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
-import { useParams, redirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { handleSaveQuestionAnswer } from "../actions/questions";
 import NotFound from "./NotFound";
 
@@ -12,6 +12,8 @@ const Question = () => {
   const question =  questions[params.id];
   const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(false);
+  const [totalA, setTotalA] = useState(0);
+  const [totalB, setTotalB] = useState(0);
 
   const answer = (e, answer) => {
     e.preventDefault();
@@ -31,6 +33,8 @@ const Question = () => {
   useEffect(() => {
     if (question && (question.optionOne.votes.includes(authedUser) == true || question.optionTwo.votes.includes(authedUser) == true)){
       setDisabled(true);
+      setTotalA(Math.trunc((question.optionOne.votes.length * 100) / (question.optionOne.votes.length + question.optionTwo.votes.length)));
+      setTotalB(Math.trunc((question.optionTwo.votes.length * 100) / (question.optionOne.votes.length + question.optionTwo.votes.length)));
     }else{
       setDisabled(false);
     }
@@ -65,6 +69,9 @@ const Question = () => {
           <button disabled={disabled} className={question.optionTwo.votes.includes(authedUser) ? "button-option selected" : "button-option"} onClick={(e) => answer(e, "optionTwo")}>
             Click
           </button>
+
+          {disabled === true && question.optionOne.votes.includes(authedUser) ? <div><p>{question.optionOne.votes.length} people voted for option A</p><p>{totalA}% of people voted this option</p></div> : null}
+          {disabled === true && question.optionTwo.votes.includes(authedUser) ? <div><p>{question.optionTwo.votes.length} people voted for option B</p><p>{totalB}% of people voted this option</p></div> : null}
         </div>
       </div>
   );

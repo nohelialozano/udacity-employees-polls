@@ -260,8 +260,26 @@ button[disabled=disabled], button:disabled {
   font-weight: bold;
 }
 
-.nav ul {
+.nav {
   border-bottom: solid #63B2AC;
+  margin-bottom: 1.5em;
+}
+
+.topnav {
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+float: left;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+float: right;
 }
 
 .not-found{

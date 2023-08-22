@@ -7,9 +7,7 @@ const QuestionList = (props) => {
   const {
     id,
     timestamp,
-    author,
-    optionOne,
-    optionTwo
+    author
   } = props.question;
 
   return (
@@ -27,7 +25,7 @@ const QuestionList = (props) => {
   );
 };
 
-const mapStateToProps = ({ authedUser, questions }, { id }) => {
+const mapStateToProps = ({ authedUser, questions }, { id, done }) => {
   const question =  questions[id];
 
   return {

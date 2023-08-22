@@ -32,7 +32,7 @@ const Login = (props) => {
         e.preventDefault();
         
         if (users[user] && users[user].password == password){
-                dispatch(SetAuthedUser(users[user]));
+                dispatch(SetAuthedUser(user));          
                 setErrorMessage("");
                 navigate("/");
             }else{

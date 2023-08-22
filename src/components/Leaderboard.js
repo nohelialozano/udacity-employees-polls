@@ -47,7 +47,7 @@ const mapStateToProps = ({ authedUser, questions, users }) => {
 
   });
   
-  console.log("Ordered users: ", orderedUsers);
+  //console.log("Ordered users: ", orderedUsers);
 
   return {
     orderedUsers
