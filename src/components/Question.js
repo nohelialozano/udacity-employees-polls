@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { handleSaveQuestionAnswer } from "../actions/questions";
+import { useNavigate } from "react-router-dom";
 import NotFound from "./NotFound";
 
 const Question = () => {
@@ -14,6 +15,7 @@ const Question = () => {
   const [disabled, setDisabled] = useState(false);
   const [totalA, setTotalA] = useState(0);
   const [totalB, setTotalB] = useState(0);
+  const navigate = useNavigate();
 
   const answer = (e, answer) => {
     e.preventDefault();
@@ -27,6 +29,7 @@ const Question = () => {
     );
 
     setDisabled(true);
+    navigate("/");
 
   };
 

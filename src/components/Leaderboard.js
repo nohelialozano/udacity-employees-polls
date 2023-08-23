@@ -46,8 +46,6 @@ const mapStateToProps = ({ authedUser, questions, users }) => {
     if (totalA < totalB) return 1; 
 
   });
-  
-  //console.log("Ordered users: ", orderedUsers);
 
   return {
     orderedUsers
