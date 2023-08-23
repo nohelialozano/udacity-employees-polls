@@ -1,10 +1,15 @@
 import * as React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Login from "../components/Login";
+import { act } from 'react-dom/test-utils';
 
 describe('Login', () => {
     it('will match snapshot', () => {
-        var component = render(<Login />);
+        let component;
+        act(() => {
+          component = render(<Login />);
+        });
+        //var component = render(<Login />);
         expect(component).toMatchSnapshot();
     });
 

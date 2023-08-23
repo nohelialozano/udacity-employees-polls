@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { render, fireEvent } from '@testing-library/react';
 import { _saveQuestion, _saveQuestionAnswer } from './_DATA.js';
 
 describe('_DATA', () => {
