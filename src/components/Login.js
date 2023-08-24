@@ -34,8 +34,7 @@ const Login = (props) => {
                 setErrorMessage("");
             }else{
                 setErrorMessage("The user and password you entered did not match our records. Please check and try again.");
-                console.log("Error ", errorMessage);
-
+                //console.log("Error ", errorMessage);
         }
     }
 
