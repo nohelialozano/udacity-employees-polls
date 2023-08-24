@@ -14,10 +14,22 @@ const Leaderboard = (props) => {
           <tbody>
             {props.orderedUsers.map((user) => (
               <tr key={user.id}>
+                  {console.log(user)}
                   <td>
-                    <span className="name">{user.name}</span>
-                    <br></br>
-                    <span className="username">{user.id}</span>
+                    <table>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <img src={user.avatarURL} className="avatar" style={{width: '30px'}}/>
+                        </td>
+                        <td>
+                          <span className="name">{user.name}</span>
+                          <br></br>
+                          <span className="username">{user.id}</span>
+                        </td>
+                      </tr>
+                      </tbody>
+                    </table>
                   </td>
                   <td>{Object.keys(user.answers).length}</td>
                   <td>{user.questions.length}</td>

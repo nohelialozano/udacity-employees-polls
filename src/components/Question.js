@@ -8,6 +8,7 @@ import NotFound from "./NotFound";
 const Question = () => {
   
   const params = useParams();
+  const users = useSelector((state) => state.users);
   const questions = useSelector((state) => state.questions);
   const authedUser = useSelector((state) => state.authedUser);
   const question =  questions[params.id];
@@ -53,10 +54,12 @@ const Question = () => {
     optionTwo
   } = question;
 
+  const avatar = users[author].avatarURL;
+
   return (
       <div className="question-detail">
         <p className="center bold">Poll by {author}</p>
-        <img src="../../user.png" className="avatar"/>
+        <img src={avatar} className="avatar"/>
         <p className="center bold">Would You Rather</p>
         <div className="options">
           <div className="option">
