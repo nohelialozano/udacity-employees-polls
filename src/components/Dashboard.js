@@ -1,29 +1,57 @@
 import { connect } from "react-redux";
+import { useState } from "react";
 import QuestionList from "./QuestionList";
 
 const Dashboard = (props) => {
+
+  const [isToggle, setIsToggle] = useState(true);
+
+  const toggleChange = ()=>{
+    setIsToggle(!isToggle)
+  }
+
   return (
     <div>
-        <div className="section">
-            <h3 className="center">New Questions</h3>
-            <ul className="section-list">
-                {props.newQuestions.map((id) => (
-                    <li key={id}>
-                        <QuestionList id={id}/>
-                    </li>
-                ))}
-            </ul>
+        <div>
+            <input
+                type="radio"
+                value={true}
+                name="toggle"
+                checked={isToggle}
+                onChange={toggleChange}
+            />
+            <label>New Questions </label>
+            <input
+                type="radio"
+                value={false}
+                name="toggle"
+                onChange={toggleChange}
+            />
+            <label>Done </label>
         </div>
-        <div className="section margin-top">
-            <h3 className="center">Done</h3>
-            <ul className="section-list">
-                {props.doneQuestions.map((id) => (
-                    <li key={id}>
-                        <QuestionList id={id}/>
-                    </li>
-                ))}
-            </ul>
-        </div>
+
+        {
+            isToggle ? (<div className="section margin-top">
+                <h3 className="center">New Questions</h3>
+                <ul className="section-list">
+                    {props.newQuestions.map((id) => (
+                        <li key={id}>
+                            <QuestionList id={id}/>
+                        </li>
+                    ))}
+                </ul>
+            </div>):
+            (<div className="section margin-top">
+                <h3 className="center">Done</h3>
+                <ul className="section-list">
+                    {props.doneQuestions.map((id) => (
+                        <li key={id}>
+                            <QuestionList id={id}/>
+                        </li>
+                    ))}
+                </ul>
+            </div>)
+        }
     </div>
   );
 };

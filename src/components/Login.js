@@ -6,8 +6,8 @@ const Login = (props) => {
 
     const { dispatch, users } = props;
 
-    const [user, setUser] = useState("");
-    const [password, setPassword] = useState("");
+    const [user, setUser] = useState("tylermcginnis");
+    const [password, setPassword] = useState("abc321");
     const [errorMessage, setErrorMessage] = useState("");
 
     const handleChangeUser = (e) => {

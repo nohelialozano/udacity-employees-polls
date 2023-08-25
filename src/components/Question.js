@@ -14,9 +14,15 @@ const Question = () => {
   const question =  questions[params.id];
   const dispatch = useDispatch();
   const [disabled, setDisabled] = useState(false);
-  const [totalA, setTotalA] = useState(0);
-  const [totalB, setTotalB] = useState(0);
+  //const [totalA, setTotalA] = useState(0);
+  //const [totalB, setTotalB] = useState(0);
   const navigate = useNavigate();
+  const totalA = Math.trunc((question.optionOne.votes.length * 100) / (question.optionOne.votes.length + question.optionTwo.votes.length));
+  const totalB = Math.trunc((question.optionTwo.votes.length * 100) / (question.optionOne.votes.length + question.optionTwo.votes.length));
+  
+  if (question === undefined){
+    return <NotFound />;
+  }
 
   const answer = (e, answer) => {
     e.preventDefault();
@@ -28,13 +34,12 @@ const Question = () => {
         answer
       })
     );
-
+    
     setDisabled(true);
-    navigate("/");
 
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (question && (question.optionOne.votes.includes(authedUser) == true || question.optionTwo.votes.includes(authedUser) == true)){
       setDisabled(true);
       setTotalA(Math.trunc((question.optionOne.votes.length * 100) / (question.optionOne.votes.length + question.optionTwo.votes.length)));
@@ -42,11 +47,7 @@ const Question = () => {
     }else{
       setDisabled(false);
     }
-  }, []);
-
-  if (question === undefined){
-    return <NotFound />;
-  }
+  }, []);*/
 
   const {
     author,
